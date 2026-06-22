@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-true: #e2231a;
+  --color-true-dark: #b71c15;
+  --color-true-soft: #fef2f2;
+  --color-ink: #1a1a1f;
+  --color-ink-soft: #4b4b55;
+  --color-line: #e8e8ee;
+  --color-cloud: #f6f6f9;
+
+  --font-sans: "IBM Plex Sans Thai", "Inter", system-ui, -apple-system, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(16, 16, 24, 0.04), 0 8px 24px rgba(16, 16, 24, 0.06);
+  --shadow-pop: 0 12px 40px rgba(16, 16, 24, 0.16);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-cloud);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ---- animations ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0.96); }
+  60% { transform: scale(1.01); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes ticketPrint {
+  0% { opacity: 0; transform: translateY(-46px) scaleY(0.6); }
+  100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.anim-fadeUp { animation: fadeUp 0.42s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-fadeIn { animation: fadeIn 0.5s ease both; }
+.anim-pop { animation: pop 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-ticket { animation: ticketPrint 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-slideIn { animation: slideInRight 0.4s ease both; }
+.pulse-dot { animation: pulseSoft 1.4s ease-in-out infinite; }
+
+/* stagger helpers */
+.stagger > * { animation: fadeUp 0.42s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger > *:nth-child(4) { animation-delay: 0.22s; }
+.stagger > *:nth-child(5) { animation-delay: 0.28s; }
+.stagger > *:nth-child(6) { animation-delay: 0.34s; }
+
+/* hide scrollbars but keep scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, .stagger > * { animation: none !important; }
+}
