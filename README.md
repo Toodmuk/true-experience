@@ -1,49 +1,42 @@
-# True Service Flow — ต้นแบบบริการหน้าร้าน
+# True Experience — True Queue + The Welcomer (ต้นแบบ)
 
-ต้นแบบ (prototype) แนวคิดปรับ service flow ของ True Shop: **เริ่มบริการตั้งแต่ก้าวแรกที่ลูกค้าเข้าร้าน**
-แทนที่จะให้ลูกค้ากดบัตรคิวแล้วรอเฉยๆ
+ต้นแบบ (prototype) ประสบการณ์หน้าร้าน True Shop แบบใหม่ที่ **เริ่มตั้งแต่ก่อนลูกค้าถึงร้าน** —
+สองด้านของเรื่องเดียวกัน เล่นได้บนมือถือ. (โฟลเดอร์นี้ยังชื่อ `service-flow-app` ตามโค้ดเดิมของ The Welcomer
+ที่ต่อยอดเพิ่ม True Queue เข้าไป — repo และ URL คือ `true-experience`)
 
-## ปัญหาที่แก้ (จาก field visit)
-service flow ปัจจุบันไม่มีประสิทธิภาพ — ลูกค้าเดินเข้ามา บอกบริการที่ต้องการ พนักงานกดตู้คิว แล้วรอ
-ระหว่างรอลูกค้าหัวร้อน และต้องเล่าเรื่องใหม่ทั้งหมดอีกครั้งให้ Service Staff ฟัง
+**Live:** https://toodmuk.github.io/true-experience/ — รหัส `Tng2026@`
 
-## แนวคิด (Apple Concierge model สำหรับ True Shop)
-1. **พนักงานหน้าร้าน (Front Staff)** มีแท็บเล็ต — ทักทาย วินิจฉัย และเก็บข้อมูลลูกค้าตั้งแต่ก้าวแรก
-   ระบบดึงข้อมูลจากฐานข้อมูล True + แนะนำสิ่งที่ควรพูด/ทำแบบ real-time
-2. เมื่อถึงจุดที่หน้าร้านทำต่อไม่ได้ → กด **"ส่งเข้าคิว"** ตู้คิวพิมพ์บัตร **พร้อมแนบข้อมูลที่เก็บมา**
-3. **Service Staff** (แล็ปท็อป) เปิดคิวมาเห็นข้อมูลครบทันที — ไม่ต้องถามซ้ำ ลงมือบริการได้เลย + upsell ตรงจุด
+## สองแนวคิดในเว็บเดียว
+1. **True Queue** (มุมลูกค้า · ในแอป True) — จองคิวจากที่บ้าน:
+   เลือกบริการ → ระบบบอกว่าต้องเตรียมเอกสารอะไร (เช่น บัตรเครดิตที่ร่วมรายการ / บัตร ปชช. / พาสปอร์ต) →
+   ผูกเบอร์ True เพื่อ "ส่งข้อมูลเข้าคิว" → บัตรคิวดิจิทัลพร้อมเวลารอ. พอถึงคิว พนักงานรู้เรื่องทันที = ลด service time
+2. **The Welcomer** (มุมพนักงาน · แท็บเล็ต) — ดูแลตั้งแต่ก้าวแรก ก่อนกดบัตรคิว:
+   เสียบบัตร ปชช./ค้นเบอร์ → วินิจฉัย → **Promotion Solver** คัดโปรฯ 40+ รายการให้เหลือที่ตรงกับลูกค้า
+   (แก้ปัญหาโปรฯ เยอะจนพนักงานใหม่ตอบไม่แม่น) → ส่งข้อมูลต่อให้ Service → สรุปผลลัพธ์ before/after
 
-**คุณค่า:** ลดลูกค้าหัวร้อน · ประหยัดเวลา · เพิ่มโอกาส upsell จากข้อมูลที่หน้าร้านเก็บมา
+ทั้งสองเชื่อมกัน: ในหน้าบัตรคิวของ True Queue มีปุ่ม "ดูสิ่งที่พนักงานเห็น" → ไปมุม The Welcomer
 
-## วิธีเล่น (สำหรับ demo)
-เปิดลิงก์ → เลือกสถานการณ์ → สวมบทเป็นพนักงานหน้าร้าน คลิกวินิจฉัย → กดส่งเข้าคิว →
-เห็นบัตรคิวพร้อมข้อมูลแนบ → สวมบทเป็น Service Staff เห็นข้อมูลครบ → ดูผลลัพธ์
-ผู้ชมแต่ละคนเล่นจบ flow ได้เองบนมือถือตัวเอง (ไม่ต้องล็อกอิน ไม่ต้องต่อกัน)
+## Grounding
+ตัวละครใน demo = 4 personas จาก field research (True Shop เซ็นทรัลเวิลด์): ลุงสมชาย / พี่นัท / Mark / คุณเอ.
+ดูกลยุทธ์เต็มที่ `../Presentation-Strategy.md`
 
 ## เทคนิค
-- **Vite + React + Tailwind v4** — single-page app, mobile-first
-- ไม่มี backend — state เก็บใน `sessionStorage` แต่ละคนมี session แยกกัน (เปิดลิงก์เดียวเล่นพร้อมกันได้ไม่จำกัด)
-- ข้อมูลลูกค้า/สถานการณ์เป็น **ตัวอย่างจำลอง** (`src/data/scenarios.js`) — โครงสร้างออกแบบให้เปลี่ยนไปต่อ API จริงของ True ได้ภายหลัง
-- คำแนะนำ ("ระบบช่วยพนักงาน") เป็น rule-based — จัดมาให้เพื่อ demo เสถียร ไม่ต้องพึ่ง LLM ตอนพรีเซนต์
-
-## โครงสร้าง
-```
-src/
-  data/scenarios.js   ข้อมูลจำลอง + 2 สถานการณ์ (บิลหัวร้อน / อัปเกรดแพ็กเกจ)
-  store.jsx           state ของ flow (intro → front → kiosk → service → impact)
-  components/
-    Intro.jsx         หน้าเลือกสถานการณ์
-    FrontStaff.jsx    แท็บเล็ตพนักงานหน้าร้าน
-    Kiosk.jsx         ตู้คิว (พิมพ์บัตร + แนบข้อมูล)
-    ServiceStaff.jsx  แล็ปท็อป Service Staff (รับข้อมูลส่งต่อ)
-    Impact.jsx        สรุปผลลัพธ์ before/after สำหรับผู้บริหาร
-    ui.jsx            ชิ้นส่วน UI ที่ใช้ซ้ำ
-```
+- **Vite + React 18 + Tailwind v4**, mobile-first, ไม่มี backend (state ใน sessionStorage)
+- `base: './'` ใน `vite.config.js` → build ใช้ได้ทั้งบน GitHub Pages (subpath) และ Vercel (root)
+- ข้อมูล/คำแนะนำเป็น **ตัวอย่างจำลอง + rule-based** (`src/data/scenarios.js`) เพื่อ demo เสถียร — ออกแบบให้ต่อ API True จริงได้
 
 ## รัน / build
 ```bash
 npm install
-npm run dev      # โหมดพัฒนา
-npm run build    # build production → dist/
-npm run preview  # ดู production build
+npm run dev       # โหมดพัฒนา
+npm run build     # → dist/
+npm run preview
 ```
+
+## Deploy (GitHub Pages)
+source อยู่บน `main`, ของที่ build อยู่บน branch `gh-pages` (Pages เสิร์ฟจาก branch นั้น). รีดีพลอย:
+```bash
+npm run build
+# push dist/ ขึ้น branch gh-pages (เช่น ผ่าน temp dir + git push -f origin gh-pages)
+```
+(ถ้าจะใช้ Vercel แทน: `vercel login` แล้ว `vercel deploy` — มี `vercel.json` + `.vercel` ของโปรเจกต์เดิมอยู่)
