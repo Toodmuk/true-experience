@@ -35,8 +35,8 @@ export default function PasswordGate({ children }) {
   }
 
   return (
-    <div className="relative z-10 flex min-h-full flex-col items-center justify-center bg-cloud px-6 lg:min-h-0 lg:bg-transparent">
-      <form onSubmit={submit} className="anim-pop w-full max-w-[340px] rounded-2xl border border-line bg-white p-6 shadow-card lg:shadow-pop">
+    <div className="relative z-10 flex min-h-full flex-col items-center justify-center bg-cloud px-6 md:min-h-0 md:bg-transparent">
+      <form onSubmit={submit} className="anim-pop w-full max-w-[340px] rounded-2xl border border-line bg-white p-6 shadow-card md:shadow-pop">
         <div className="flex justify-center">
           <Brand />
         </div>
