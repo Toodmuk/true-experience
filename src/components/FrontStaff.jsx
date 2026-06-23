@@ -1,6 +1,21 @@
+import {
+  Tablet,
+  RotateCcw,
+  IdCard,
+  ChevronRight,
+  Phone,
+  Brain,
+  Check,
+  CheckCircle2,
+  ClipboardList,
+  Ticket as TicketIcon,
+  Gift,
+  Sparkles,
+} from 'lucide-react'
 import { useSession, makeQueueNumber } from '../store.jsx'
 import { getScenario } from '../data/scenarios.js'
 import { RoleBar, Suggestion, SectionLabel } from './ui.jsx'
+import { getIcon } from './icons.jsx'
 
 export default function FrontStaff() {
   const { state, dispatch } = useSession()
@@ -19,15 +34,15 @@ export default function FrontStaff() {
   return (
     <div className="flex flex-1 flex-col">
       <RoleBar
-        device="📱"
+        device={<Tablet className="h-5 w-5" aria-hidden="true" />}
         role="พนักงานหน้าร้าน · The Welcomer"
         sub="แท็บเล็ต · True Shop เซ็นทรัลเวิลด์"
         right={
           <button
             onClick={() => dispatch({ type: 'RESTART_WELCOMER' })}
-            className="rounded-lg px-2 py-1 text-[12px] font-medium text-ink-soft/70 active:scale-95"
+            className="inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-[12px] font-medium text-ink-soft/70 active:scale-95"
           >
-            ↺ เริ่มใหม่
+            <RotateCcw className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> เริ่มใหม่
           </button>
         }
       />
@@ -56,12 +71,12 @@ export default function FrontStaff() {
               onClick={() => dispatch({ type: 'LOOKUP', method: 'idcard' })}
               className="flex w-full items-center gap-3 rounded-xl border border-true/30 bg-true-soft px-3.5 py-3 text-left transition active:scale-[0.98]"
             >
-              <span className="text-2xl">🪪</span>
+              <IdCard className="h-6 w-6 shrink-0 text-true" strokeWidth={1.75} aria-hidden="true" />
               <span className="min-w-0 flex-1">
                 <span className="block text-[14px] font-bold text-ink">เสียบบัตรประชาชน (ID Reader)</span>
                 <span className="block text-[11px] text-ink-soft">ดึงข้อมูลอัตโนมัติใน 1 วินาที</span>
               </span>
-              <span className="text-true">›</span>
+              <ChevronRight className="h-5 w-5 shrink-0 text-true" strokeWidth={2} aria-hidden="true" />
             </button>
 
             <div className="my-3 flex items-center gap-2 text-[11px] text-ink-soft/50">
@@ -69,11 +84,12 @@ export default function FrontStaff() {
             </div>
 
             <div className="flex items-center gap-2 rounded-xl border border-line bg-cloud px-3 py-2.5">
-              <span className="text-ink-soft">📞</span>
+              <Phone className="h-4 w-4 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
               <input
                 defaultValue={sc.customer.phone}
                 inputMode="tel"
-                className="w-full bg-transparent text-[15px] font-medium text-ink outline-none"
+                aria-label="เบอร์โทรลูกค้า"
+                className="w-full bg-transparent text-base font-medium text-ink outline-none"
               />
             </div>
             <button
@@ -82,7 +98,7 @@ export default function FrontStaff() {
             >
               ค้นหาด้วยเบอร์
             </button>
-            <p className="mt-2 text-center text-[11px] text-ink-soft/60">
+            <p className="mt-2 text-center text-[11px] text-ink-soft/70">
               ถ้าลูกค้าจองผ่าน <b>True Queue</b> ข้อมูลจะมาพร้อมคิวอัตโนมัติ
             </p>
           </div>
@@ -109,7 +125,7 @@ export default function FrontStaff() {
 
               <div className="mt-3 rounded-xl bg-violet-50 p-3">
                 <div className="mb-1.5 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-violet-700">
-                  🧠 ระบบวิเคราะห์
+                  <Brain className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" /> ระบบวิเคราะห์
                 </div>
                 <ul className="space-y-1">
                   {sc.customer.insights.map((it, i) => (
@@ -148,7 +164,7 @@ export default function FrontStaff() {
                         key={s.id}
                         className="flex items-center gap-2 rounded-lg bg-cloud px-3 py-1.5 text-[13px]"
                       >
-                        <span className="text-emerald-500">✓</span>
+                        <Check className="h-4 w-4 shrink-0 text-emerald-500" strokeWidth={2.5} aria-hidden="true" />
                         <span className="text-ink-soft">{a?.captureLabel}:</span>
                         <span className="font-semibold text-ink">{a?.label}</span>
                       </div>
@@ -160,7 +176,10 @@ export default function FrontStaff() {
               {current ? (
                 <div key={current.id} className="anim-fadeIn">
                   <div className="mb-2.5 flex items-center gap-2 text-[15px] font-bold text-ink">
-                    <span>{current.icon}</span>
+                    {(() => {
+                      const QIcon = getIcon(current.icon)
+                      return <QIcon className="h-4 w-4 shrink-0 text-true" strokeWidth={2} aria-hidden="true" />
+                    })()}
                     {current.q}
                   </div>
                   <div className="flex flex-col gap-2">
@@ -177,7 +196,9 @@ export default function FrontStaff() {
                 </div>
               ) : (
                 <div className="anim-pop rounded-xl bg-emerald-50 p-3.5 text-center">
-                  <div className="text-[14px] font-bold text-emerald-800">✓ วินิจฉัยครบแล้ว</div>
+                  <div className="flex items-center justify-center gap-1.5 text-[14px] font-bold text-emerald-800">
+                    <CheckCircle2 className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> วินิจฉัยครบแล้ว
+                  </div>
                   <div className="mt-0.5 text-[12px] text-emerald-700">พร้อมส่งต่อให้ Service Staff</div>
                 </div>
               )}
@@ -188,7 +209,9 @@ export default function FrontStaff() {
               <div className="anim-fadeUp">
                 <div className="mb-2 flex items-center gap-2">
                   <SectionLabel>คำแนะนำสด · ระบบช่วยพนักงาน</SectionLabel>
-                  <span className="pulse-dot text-[10px] font-bold text-true">● LIVE</span>
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-true">
+                    <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-true" aria-hidden="true" /> LIVE
+                  </span>
                 </div>
                 <div className="flex flex-col gap-2">
                   {state.suggestions.map((s, i) => (
@@ -205,18 +228,18 @@ export default function FrontStaff() {
             {done && (
               <div className="anim-fadeUp sticky bottom-0 -mx-4 mt-1 border-t border-line bg-white/95 px-4 pb-4 pt-3 backdrop-blur">
                 <div className="mb-3 rounded-xl border border-true/20 bg-true-soft p-3">
-                  <div className="mb-1 text-[11px] font-bold uppercase tracking-wide text-true">
-                    📋 สรุปส่งต่อทีม Service
+                  <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-true">
+                    <ClipboardList className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" /> สรุปส่งต่อทีม Service
                   </div>
                   <p className="text-[13px] leading-relaxed text-ink">{sc.handoff.summary}</p>
                 </div>
                 <button
                   onClick={sendToQueue}
-                  className="w-full rounded-xl bg-true py-3.5 text-[16px] font-bold text-white shadow-pop transition active:scale-[0.98]"
+                  className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-true py-3.5 text-[16px] font-bold text-white shadow-pop transition active:scale-[0.98]"
                 >
-                  ส่งต่อ Service + พิมพ์บัตรคิว 🎟️
+                  <TicketIcon className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> ส่งต่อ Service + พิมพ์บัตรคิว
                 </button>
-                <p className="mt-2 text-center text-[11px] text-ink-soft/60">
+                <p className="mt-2 text-center text-[11px] text-ink-soft/70">
                   กดคิวเฉพาะตอนต้องส่งต่อ — ถ้าจบที่หน้าร้านได้ ไม่ต้องกดคิวเลย
                 </p>
               </div>
@@ -234,16 +257,16 @@ function PromoSolver({ sc, revealed, onReveal }) {
     return (
       <div className="anim-fadeUp rounded-2xl border border-amber-200 bg-amber-50 p-4">
         <div className="flex items-center gap-2 text-[14px] font-bold text-amber-900">
-          🎁 โปรโมชันเยอะจนงง?
+          <Gift className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden="true" /> โปรโมชันเยอะจนงง?
         </div>
         <p className="mt-1 text-[13px] leading-relaxed text-amber-900/90">
           {pm.poolNote} — ระบบคัดให้เหลือเฉพาะที่ตรงกับลูกค้าคนนี้ พนักงานใหม่ก็เสนอได้แม่นยำ
         </p>
         <button
           onClick={onReveal}
-          className="mt-3 w-full rounded-xl bg-amber-500 py-3 text-[14px] font-bold text-white shadow-sm transition active:scale-[0.98]"
+          className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-amber-500 py-3 text-[14px] font-bold text-white shadow-sm transition active:scale-[0.98]"
         >
-          ✨ คัดโปรฯ ที่ใช่ให้อัตโนมัติ
+          <Sparkles className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> คัดโปรฯ ที่ใช่ให้อัตโนมัติ
         </button>
       </div>
     )
@@ -279,7 +302,7 @@ function Field({ k, v }) {
   return (
     <div className="rounded-lg bg-cloud px-3 py-2">
       <div className="text-[10px] text-ink-soft/70">{k}</div>
-      <div className="text-[13px] font-semibold leading-snug text-ink">{v}</div>
+      <div className="tnum text-[13px] font-semibold leading-snug text-ink">{v}</div>
     </div>
   )
 }

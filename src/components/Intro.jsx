@@ -1,12 +1,13 @@
+import { Tablet, Ticket, Laptop, BarChart3, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useSession } from '../store.jsx'
 import { WELCOMER_SCENARIOS } from '../data/scenarios.js'
 import { Brand, Tag } from './ui.jsx'
 
 const FLOW = [
-  { i: '📱', t: 'ทักทาย+วินิจฉัย' },
-  { i: '🎟️', t: 'คิว (ถ้าตัน)' },
-  { i: '💻', t: 'Service' },
-  { i: '📊', t: 'ผลลัพธ์' },
+  { Icon: Tablet, t: 'ทักทาย+วินิจฉัย' },
+  { Icon: Ticket, t: 'คิว (ถ้าตัน)' },
+  { Icon: Laptop, t: 'Service' },
+  { Icon: BarChart3, t: 'ผลลัพธ์' },
 ]
 
 export default function Intro() {
@@ -17,9 +18,9 @@ export default function Intro() {
       <div className="anim-fadeUp flex items-center justify-between">
         <button
           onClick={() => dispatch({ type: 'GO_HUB' })}
-          className="flex items-center gap-1 text-[13px] font-semibold text-ink-soft/70 active:scale-95"
+          className="-ml-1 inline-flex min-h-[44px] items-center gap-1 px-1 text-[13px] font-semibold text-ink-soft/70 active:scale-95"
         >
-          ‹ หน้าแรก
+          <ChevronLeft className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> หน้าแรก
         </button>
         <Tag color="#1f2937">The Welcomer</Tag>
       </div>
@@ -39,15 +40,18 @@ export default function Intro() {
 
       {/* flow strip */}
       <div className="anim-fadeUp mt-6 flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3.5 shadow-card" style={{ animationDelay: '0.1s' }}>
-        {FLOW.map((f, i) => (
+        {FLOW.map((f, i) => {
+          const Icon = f.Icon
+          return (
           <div key={f.t} className="flex items-center">
             <div className="flex flex-col items-center gap-1 text-center">
-              <span className="text-xl">{f.i}</span>
+              <Icon className="h-5 w-5 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
               <span className="text-[10px] font-medium leading-tight text-ink-soft">{f.t}</span>
             </div>
             {i < FLOW.length - 1 && <span className="mx-1 text-ink-soft/40">→</span>}
           </div>
-        ))}
+          )
+        })}
       </div>
 
       <div className="anim-fadeUp mt-8" style={{ animationDelay: '0.16s' }}>
@@ -79,16 +83,18 @@ export default function Intro() {
                     “{s.walkIn.quote}”
                   </p>
                 </div>
-                <span className="mt-1 text-ink-soft/40 transition group-hover:translate-x-0.5 group-hover:text-true">
-                  ›
-                </span>
+                <ChevronRight
+                  className="mt-1 h-5 w-5 shrink-0 text-ink-soft/40 transition group-hover:translate-x-0.5 group-hover:text-true"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
               </div>
             </button>
           ))}
         </div>
       </div>
 
-      <p className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-soft/60" style={{ animationDelay: '0.2s' }}>
+      <p className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-soft/70" style={{ animationDelay: '0.2s' }}>
         ต้นแบบแนวคิด · True Next Gen · ข้อมูลลูกค้าเป็นตัวอย่างจำลอง
       </p>
     </div>

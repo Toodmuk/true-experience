@@ -1,18 +1,19 @@
+import { Home, Receipt, Building2, Smartphone, Ticket, Tablet } from 'lucide-react'
 import { useSession } from '../store.jsx'
 import { PERSONAS } from '../data/scenarios.js'
 import { Brand, Tag } from './ui.jsx'
 
 const STORY = [
-  { i: '🏠', t: 'จองคิวจากบ้าน' },
-  { i: '🧾', t: 'เตรียมเอกสารครบ' },
-  { i: '🏬', t: 'มาถึงร้าน' },
-  { i: '📱', t: 'พนักงานรู้เรื่องแล้ว' },
+  { Icon: Home, t: 'จองคิวจากบ้าน' },
+  { Icon: Receipt, t: 'เตรียมเอกสารครบ' },
+  { Icon: Building2, t: 'มาถึงร้าน' },
+  { Icon: Smartphone, t: 'พนักงานรู้เรื่องแล้ว' },
 ]
 
 const CONCEPTS = [
   {
     id: 'queue',
-    emoji: '🎟️',
+    Icon: Ticket,
     kicker: 'มุมลูกค้า · ในแอป True',
     title: 'True Queue',
     desc: 'จองคิวจากที่บ้านหรือที่ไหนก็ได้ — ระบบบอกว่าต้องเตรียมเอกสารอะไร แล้วส่งข้อมูลของคุณเข้าคิวล่วงหน้า',
@@ -21,7 +22,7 @@ const CONCEPTS = [
   },
   {
     id: 'welcomer',
-    emoji: '📱',
+    Icon: Tablet,
     kicker: 'มุมพนักงาน · แท็บเล็ตหน้าร้าน',
     title: 'The Welcomer',
     desc: 'พนักงานเริ่มดูแลตั้งแต่ก้าวแรก วินิจฉัยบนแท็บเล็ตก่อนกดบัตรคิว และระบบคัดโปรฯ 40+ ให้เหลือที่ตรงกับลูกค้า',
@@ -57,15 +58,18 @@ export default function Hub() {
         className="anim-fadeUp mt-6 flex items-center justify-between rounded-2xl border border-line bg-white px-3 py-3.5 shadow-card"
         style={{ animationDelay: '0.1s' }}
       >
-        {STORY.map((f, i) => (
+        {STORY.map((f, i) => {
+          const Icon = f.Icon
+          return (
           <div key={f.t} className="flex items-center">
             <div className="flex flex-col items-center gap-1 px-0.5 text-center">
-              <span className="text-xl">{f.i}</span>
+              <Icon className="h-5 w-5 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
               <span className="text-[10px] font-medium leading-tight text-ink-soft">{f.t}</span>
             </div>
             {i < STORY.length - 1 && <span className="mx-0.5 text-ink-soft/40">→</span>}
           </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* concept cards */}
@@ -74,7 +78,9 @@ export default function Hub() {
           เลือกมุมที่อยากลองเล่น
         </div>
         <div className="flex flex-col gap-3.5">
-          {CONCEPTS.map((c) => (
+          {CONCEPTS.map((c) => {
+            const Icon = c.Icon
+            return (
             <button
               key={c.id}
               onClick={() => dispatch({ type: 'SET_CONCEPT', concept: c.id })}
@@ -82,10 +88,10 @@ export default function Hub() {
             >
               <div className="flex items-start gap-3.5">
                 <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-2xl"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
                   style={{ background: `${c.accent}12` }}
                 >
-                  {c.emoji}
+                  <Icon className="h-6 w-6" strokeWidth={1.75} style={{ color: c.accent }} aria-hidden="true" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="text-[11px] font-semibold uppercase tracking-wide text-ink-soft/70">
@@ -104,7 +110,8 @@ export default function Hub() {
                 </div>
               </div>
             </button>
-          ))}
+            )
+          })}
         </div>
       </div>
 
@@ -127,7 +134,7 @@ export default function Hub() {
       </div>
 
       <p
-        className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-soft/60"
+        className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-soft/70"
         style={{ animationDelay: '0.28s' }}
       >
         ต้นแบบแนวคิด · True Next Gen · ข้อมูลลูกค้าเป็นตัวอย่างจำลอง

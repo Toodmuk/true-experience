@@ -58,36 +58,36 @@ export function getPersona(id) {
 export const QUEUE_SERVICES = [
   {
     id: 'package',
-    emoji: '📶',
+    icon: 'signal',
     title: 'เปลี่ยน / ต่อแพ็กเกจ',
     sub: 'ปรึกษาแพ็กเกจ มือถือ/เน็ตบ้าน หรือต่อสัญญา',
     counter: 'เคาน์เตอร์ขาย / ปรึกษา',
     estMin: 12,
     personaId: 'nut',
     docs: [
-      { icon: '🪪', label: 'บัตรประชาชน', required: true },
-      { icon: '📱', label: 'เบอร์ที่ต้องการเปลี่ยนแพ็กเกจ', required: true },
-      { icon: '💳', label: 'บัตรเครดิตที่ร่วมรายการ (ถ้าผ่อน 0%)', required: false },
+      { icon: 'idcard', label: 'บัตรประชาชน', required: true },
+      { icon: 'smartphone', label: 'เบอร์ที่ต้องการเปลี่ยนแพ็กเกจ', required: true },
+      { icon: 'creditcard', label: 'บัตรเครดิตที่ร่วมรายการ (ถ้าผ่อน 0%)', required: false },
     ],
   },
   {
     id: 'device',
-    emoji: '📱',
+    icon: 'smartphone',
     title: 'ซื้อ / ผ่อนเครื่องใหม่',
     sub: 'เลือกเครื่อง ผ่อน 0% หรือเทิร์นเครื่องเก่า',
     counter: 'เคาน์เตอร์ขายเครื่อง (ITF)',
     estMin: 18,
     personaId: 'nut',
     docs: [
-      { icon: '🪪', label: 'บัตรประชาชน', required: true },
-      { icon: '💳', label: 'บัตรเครดิตที่ร่วมรายการ (สำหรับผ่อน 0%)', required: true },
-      { icon: '📦', label: 'เครื่องเก่า + กล่อง (ถ้าจะเทิร์น)', required: false },
-      { icon: '📄', label: 'สลิปเงินเดือน (เฉพาะบางโปรผ่อน)', required: false },
+      { icon: 'idcard', label: 'บัตรประชาชน', required: true },
+      { icon: 'creditcard', label: 'บัตรเครดิตที่ร่วมรายการ (สำหรับผ่อน 0%)', required: true },
+      { icon: 'package', label: 'เครื่องเก่า + กล่อง (ถ้าจะเทิร์น)', required: false },
+      { icon: 'file', label: 'สลิปเงินเดือน (เฉพาะบางโปรผ่อน)', required: false },
     ],
   },
   {
     id: 'new-sim',
-    emoji: '🌏',
+    icon: 'globe',
     title: 'เปิดเบอร์ใหม่ / ซิมนักท่องเที่ยว',
     sub: 'Open a new number · Tourist SIM',
     counter: 'เคาน์เตอร์เปิดเบอร์',
@@ -95,13 +95,13 @@ export const QUEUE_SERVICES = [
     personaId: 'mark',
     english: 'New SIM / Tourist SIM — bring your passport',
     docs: [
-      { icon: '🪪', label: 'บัตรประชาชน / Passport', required: true },
-      { icon: '🤳', label: 'สแกนใบหน้า (face-scan ที่ร้าน)', required: true },
+      { icon: 'idcard', label: 'บัตรประชาชน / Passport', required: true },
+      { icon: 'scanface', label: 'สแกนใบหน้า (face-scan ที่ร้าน)', required: true },
     ],
   },
   {
     id: 'bill',
-    emoji: '🧾',
+    icon: 'receipt',
     title: 'จ่ายบิล / สอบถามค่าบริการ',
     sub: 'ชำระเงิน หรือสอบถามว่าทำไมบิลแพงขึ้น',
     counter: 'ช่องด่วน (Fast Lane)',
@@ -109,35 +109,35 @@ export const QUEUE_SERVICES = [
     personaId: 'somchai',
     fastLane: true,
     docs: [
-      { icon: '🪪', label: 'บัตรประชาชน', required: true },
-      { icon: '🧾', label: 'เลขที่ใบแจ้งหนี้ / เบอร์ที่จะชำระ', required: false },
+      { icon: 'idcard', label: 'บัตรประชาชน', required: true },
+      { icon: 'receipt', label: 'เลขที่ใบแจ้งหนี้ / เบอร์ที่จะชำระ', required: false },
     ],
   },
   {
     id: 'retention',
-    emoji: '🔁',
+    icon: 'repeat',
     title: 'ยกเลิก / ย้ายค่าย',
     sub: 'ยกเลิกบริการ หรือย้ายค่าย (port out)',
     counter: 'แผนก Retention',
     estMin: 20,
     personaId: 'ae',
     docs: [
-      { icon: '🪪', label: 'บัตรประชาชนเจ้าของเบอร์', required: true },
-      { icon: '💸', label: 'เคลียร์ยอดค้างชำระ (ถ้ามี)', required: true },
-      { icon: '📄', label: 'เอกสารยืนยันตัวตน (กรณีจดทะเบียนแทน)', required: false },
+      { icon: 'idcard', label: 'บัตรประชาชนเจ้าของเบอร์', required: true },
+      { icon: 'banknote', label: 'เคลียร์ยอดค้างชำระ (ถ้ามี)', required: true },
+      { icon: 'file', label: 'เอกสารยืนยันตัวตน (กรณีจดทะเบียนแทน)', required: false },
     ],
   },
   {
     id: 'signal',
-    emoji: '📡',
+    icon: 'wifi',
     title: 'สัญญาณ / เน็ตมีปัญหา',
     sub: 'แจ้งปัญหาสัญญาณมือถือ หรือเน็ตบ้าน',
     counter: 'เคาน์เตอร์เทคนิค / After-sale',
     estMin: 10,
     personaId: 'somchai',
     docs: [
-      { icon: '🪪', label: 'บัตรประชาชน / เบอร์ที่มีปัญหา', required: true },
-      { icon: '🏠', label: 'ที่อยู่ติดตั้ง (กรณีเน็ตบ้าน)', required: false },
+      { icon: 'idcard', label: 'บัตรประชาชน / เบอร์ที่มีปัญหา', required: true },
+      { icon: 'home', label: 'ที่อยู่ติดตั้ง (กรณีเน็ตบ้าน)', required: false },
     ],
   },
 ]
@@ -218,7 +218,7 @@ export const WELCOMER_SCENARIOS = [
     diagnosis: [
       {
         id: 'reason',
-        icon: '🎯',
+        icon: 'target',
         q: 'ลูกค้ามาเรื่องอะไร?',
         captureLabel: 'เรื่องที่มา',
         options: [
@@ -236,7 +236,7 @@ export const WELCOMER_SCENARIOS = [
       },
       {
         id: 'mood',
-        icon: '🌡️',
+        icon: 'thermometer',
         q: 'ประเมินอารมณ์ลูกค้า',
         captureLabel: 'อารมณ์',
         options: [
@@ -255,7 +255,7 @@ export const WELCOMER_SCENARIOS = [
       },
       {
         id: 'detail',
-        icon: '🔎',
+        icon: 'search',
         q: 'ระบบพบสาเหตุ — ยืนยันกับลูกค้า',
         captureLabel: 'สาเหตุที่พบ',
         options: [
@@ -325,9 +325,9 @@ export const WELCOMER_SCENARIOS = [
         steps: ['หน้าร้านรับฟัง+วินิจฉัยทันที', 'ข้อมูลส่งต่อไปกับคิว', 'Service ทักด้วยชื่อ รู้เรื่องแล้ว', 'แก้ + ต่อโปรฯ + เสนอ True Vision'],
       },
       wins: [
-        { icon: '😌', label: 'ลดลูกค้าหัวร้อน', text: 'รับฟังตั้งแต่ก้าวแรก ไม่ต้องเล่าซ้ำ' },
-        { icon: '⏱️', label: 'ประหยัดเวลา ~8 นาที', text: 'Service เริ่มทำงานได้ทันที' },
-        { icon: '💰', label: 'เพิ่มโอกาส Upsell', text: 'ข้อมูลการใช้งานนำไปสู่ข้อเสนอที่ตรงจุด' },
+        { icon: 'smile', label: 'ลดลูกค้าหัวร้อน', text: 'รับฟังตั้งแต่ก้าวแรก ไม่ต้องเล่าซ้ำ' },
+        { icon: 'clock', label: 'ประหยัดเวลา ~8 นาที', text: 'Service เริ่มทำงานได้ทันที' },
+        { icon: 'wallet', label: 'เพิ่มโอกาส Upsell', text: 'ข้อมูลการใช้งานนำไปสู่ข้อเสนอที่ตรงจุด' },
       ],
     },
   },
@@ -365,7 +365,7 @@ export const WELCOMER_SCENARIOS = [
     diagnosis: [
       {
         id: 'reason',
-        icon: '🎯',
+        icon: 'target',
         q: 'ลูกค้ามาเรื่องอะไร?',
         captureLabel: 'เรื่องที่มา',
         options: [
@@ -383,7 +383,7 @@ export const WELCOMER_SCENARIOS = [
       },
       {
         id: 'need',
-        icon: '💡',
+        icon: 'lightbulb',
         q: 'จับความต้องการ (เพื่อส่งให้ Service ปิดการขาย)',
         captureLabel: 'ความต้องการ',
         options: [
@@ -401,7 +401,7 @@ export const WELCOMER_SCENARIOS = [
       },
       {
         id: 'mood',
-        icon: '🌡️',
+        icon: 'thermometer',
         q: 'ประเมินอารมณ์ / ความพร้อมซื้อ',
         captureLabel: 'อารมณ์',
         options: [
@@ -470,9 +470,9 @@ export const WELCOMER_SCENARIOS = [
         steps: ['หน้าร้านจับความต้องการจากข้อมูลจริง', 'ส่งข้อเสนอที่ตรงไปกับคิว', 'Service เสนอตรงจุด ปิดได้เร็ว', 'ต่อยอด upsell บันเดิล'],
       },
       wins: [
-        { icon: '🎯', label: 'ขายตรงความต้องการ', text: 'ข้อมูลการใช้งานจริงนำการเสนอ ไม่ใช่ขายเดา' },
-        { icon: '📈', label: 'Conversion สูงขึ้น', text: 'ลูกค้าไม่รู้สึกโดนยัดขาย ปิดง่ายขึ้น' },
-        { icon: '💰', label: 'ARPU +฿300 + บันเดิล', text: 'โอกาส upsell ถูกจัดมาให้ตั้งแต่หน้าร้าน' },
+        { icon: 'target', label: 'ขายตรงความต้องการ', text: 'ข้อมูลการใช้งานจริงนำการเสนอ ไม่ใช่ขายเดา' },
+        { icon: 'trendingup', label: 'Conversion สูงขึ้น', text: 'ลูกค้าไม่รู้สึกโดนยัดขาย ปิดง่ายขึ้น' },
+        { icon: 'wallet', label: 'ARPU +฿300 + บันเดิล', text: 'โอกาส upsell ถูกจัดมาให้ตั้งแต่หน้าร้าน' },
       ],
     },
   },
@@ -510,7 +510,7 @@ export const WELCOMER_SCENARIOS = [
     diagnosis: [
       {
         id: 'reason',
-        icon: '🎯',
+        icon: 'target',
         q: 'ลูกค้ามาเรื่องอะไร?',
         captureLabel: 'เรื่องที่มา',
         options: [
@@ -528,7 +528,7 @@ export const WELCOMER_SCENARIOS = [
       },
       {
         id: 'why',
-        icon: '🔎',
+        icon: 'search',
         q: 'เหตุผลจริงที่จะยกเลิก',
         captureLabel: 'เหตุผล',
         options: [
@@ -547,7 +547,7 @@ export const WELCOMER_SCENARIOS = [
       },
       {
         id: 'mood',
-        icon: '🌡️',
+        icon: 'thermometer',
         q: 'ประเมินความอดทน',
         captureLabel: 'อารมณ์',
         options: [
@@ -616,9 +616,9 @@ export const WELCOMER_SCENARIOS = [
         steps: ['หน้าร้านขุดเหตุผลจริง (ย้ายบ้าน)', 'GIS ยืนยันบ้านใหม่ใช้ได้', 'เสนอย้าย+ส่วนลดตรงจุด', 'รักษาลูกค้ามูลค่าสูงไว้'],
       },
       wins: [
-        { icon: '🛡️', label: 'กัน churn ลูกค้ามูลค่าสูง', text: 'รักษารายได้ ~฿13,000/ปี ที่กำลังจะหลุด' },
-        { icon: '🎯', label: 'แก้เหตุผลจริง ไม่ใช่ตื๊อ', text: 'เปลี่ยน “ยกเลิก” เป็น “ย้ายบริการ”' },
-        { icon: '⏱️', label: 'ลดเวลา + ลดการวนเอกสาร', text: 'เคลียร์ยอดค้าง/คิวด่วนเตรียมไว้ล่วงหน้า' },
+        { icon: 'shieldcheck', label: 'กัน churn ลูกค้ามูลค่าสูง', text: 'รักษารายได้ ~฿13,000/ปี ที่กำลังจะหลุด' },
+        { icon: 'target', label: 'แก้เหตุผลจริง ไม่ใช่ตื๊อ', text: 'เปลี่ยน “ยกเลิก” เป็น “ย้ายบริการ”' },
+        { icon: 'clock', label: 'ลดเวลา + ลดการวนเอกสาร', text: 'เคลียร์ยอดค้าง/คิวด่วนเตรียมไว้ล่วงหน้า' },
       ],
     },
   },

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Lock } from 'lucide-react'
 import { Brand } from './ui.jsx'
 
 // Soft gate (same style as the shopvisit-note site). Note: a client-side
@@ -49,7 +50,7 @@ export default function PasswordGate({ children }) {
             err ? 'border-true' : 'border-line'
           }`}
         >
-          <span className="text-ink-soft">🔒</span>
+          <Lock className="h-4 w-4 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
           <input
             type="password"
             autoFocus
@@ -59,7 +60,7 @@ export default function PasswordGate({ children }) {
               setErr(false)
             }}
             placeholder="รหัสผ่าน"
-            className="w-full bg-transparent text-[15px] text-ink outline-none"
+            className="w-full bg-transparent text-base text-ink outline-none"
           />
         </div>
         {err && <p className="mt-2 text-[12px] font-medium text-true">รหัสผ่านไม่ถูกต้อง ลองอีกครั้ง</p>}
@@ -71,7 +72,7 @@ export default function PasswordGate({ children }) {
           เข้าชม
         </button>
 
-        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-soft/60">
+        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-soft/70">
           ต้นแบบแนวคิด · True Next Gen
         </p>
       </form>

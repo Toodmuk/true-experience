@@ -1,7 +1,18 @@
 import { useMemo, useState } from 'react'
+import {
+  ChevronLeft,
+  Phone,
+  Brain,
+  Check,
+  Lightbulb,
+  MapPin,
+  Ticket as TicketIcon,
+  User,
+} from 'lucide-react'
 import { useSession } from '../store.jsx'
 import { QUEUE_SERVICES, QUEUE_PROFILE, getQueueService, makeQueueNumber } from '../data/scenarios.js'
 import { SectionLabel } from './ui.jsx'
+import { getIcon } from './icons.jsx'
 
 // ── True App chrome (phone header) ────────────────────────────────────────
 function AppBar({ title, onBack }) {
@@ -9,10 +20,10 @@ function AppBar({ title, onBack }) {
     <div className="sticky top-0 z-20 flex items-center gap-2 border-b border-line bg-true px-3 py-3 text-white">
       <button
         onClick={onBack}
-        className="flex h-8 w-8 items-center justify-center rounded-lg text-lg active:scale-90"
+        className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg active:scale-90"
         aria-label="ย้อนกลับ"
       >
-        ‹
+        <ChevronLeft className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
       </button>
       <div className="flex items-center gap-1.5">
         <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white text-[13px] font-bold text-true">
@@ -131,13 +142,15 @@ function ServiceSelect({ onPick }) {
       </div>
 
       <div className="stagger grid grid-cols-2 gap-3">
-        {QUEUE_SERVICES.map((s) => (
+        {QUEUE_SERVICES.map((s) => {
+          const Icon = getIcon(s.icon)
+          return (
           <button
             key={s.id}
             onClick={() => onPick(s.id)}
             className="flex flex-col items-start gap-2 rounded-2xl border border-line bg-white p-3.5 text-left shadow-card transition active:scale-[0.97] hover:border-true/40 hover:shadow-pop"
           >
-            <span className="text-2xl">{s.emoji}</span>
+            <Icon className="h-7 w-7 text-true" strokeWidth={1.75} aria-hidden="true" />
             <span className="text-[14px] font-bold leading-tight text-ink">{s.title}</span>
             <span className="text-[11px] leading-snug text-ink-soft">{s.sub}</span>
             {s.fastLane && (
@@ -146,10 +159,11 @@ function ServiceSelect({ onPick }) {
               </span>
             )}
           </button>
-        ))}
+          )
+        })}
       </div>
 
-      <p className="mt-auto pt-4 text-center text-[11px] leading-relaxed text-ink-soft/60">
+      <p className="mt-auto pt-4 text-center text-[11px] leading-relaxed text-ink-soft/70">
         เหมือน QueQ — แต่ผูกกับข้อมูล True เพื่อให้พนักงานพร้อมก่อนคุณถึง
       </p>
     </div>
@@ -158,10 +172,11 @@ function ServiceSelect({ onPick }) {
 
 // ── Step 2: what to bring ─────────────────────────────────────────────────
 function Docs({ service, ticked, setTicked, allRequiredTicked, onConfirm }) {
+  const ServiceIcon = getIcon(service.icon)
   return (
     <div className="flex flex-1 flex-col gap-4 px-4 py-5">
       <div className="anim-fadeUp flex items-center gap-3 rounded-2xl border border-line bg-white p-3.5 shadow-card">
-        <span className="text-2xl">{service.emoji}</span>
+        <ServiceIcon className="h-7 w-7 shrink-0 text-true" strokeWidth={1.75} aria-hidden="true" />
         <div className="min-w-0">
           <div className="text-[15px] font-bold text-ink">{service.title}</div>
           <div className="text-[12px] text-ink-soft">ไปที่: {service.counter}</div>
@@ -173,6 +188,7 @@ function Docs({ service, ticked, setTicked, allRequiredTicked, onConfirm }) {
         <div className="flex flex-col gap-2">
           {service.docs.map((d, i) => {
             const on = !!ticked[i]
+            const DocIcon = getIcon(d.icon)
             return (
               <button
                 key={i}
@@ -182,13 +198,13 @@ function Docs({ service, ticked, setTicked, allRequiredTicked, onConfirm }) {
                 }`}
               >
                 <span
-                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-[12px] font-bold ${
-                    on ? 'border-emerald-500 bg-emerald-500 text-white' : 'border-ink-soft/30 text-transparent'
+                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${
+                    on ? 'border-emerald-500 bg-emerald-500 text-white' : 'border-ink-soft/30'
                   }`}
                 >
-                  ✓
+                  {on && <Check className="h-3.5 w-3.5" strokeWidth={3} aria-hidden="true" />}
                 </span>
-                <span className="text-lg">{d.icon}</span>
+                <DocIcon className="h-5 w-5 shrink-0 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
                 <span className="min-w-0 flex-1">
                   <span className={`block text-[14px] font-medium ${on ? 'text-emerald-900' : 'text-ink'}`}>
                     {d.label}
@@ -199,14 +215,15 @@ function Docs({ service, ticked, setTicked, allRequiredTicked, onConfirm }) {
                     จำเป็น
                   </span>
                 ) : (
-                  <span className="shrink-0 text-[10px] text-ink-soft/60">ถ้ามี</span>
+                  <span className="shrink-0 text-[10px] text-ink-soft/70">ถ้ามี</span>
                 )}
               </button>
             )
           })}
         </div>
-        <p className="mt-3 rounded-xl bg-cloud px-3 py-2 text-[12px] leading-relaxed text-ink-soft">
-          💡 เตรียมให้ครบ จะได้ไม่ต้องกลับมาใหม่ — ลด service time ที่เคาน์เตอร์
+        <p className="mt-3 flex items-start gap-1.5 rounded-xl bg-cloud px-3 py-2 text-[12px] leading-relaxed text-ink-soft">
+          <Lightbulb className="h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden="true" />
+          เตรียมให้ครบ จะได้ไม่ต้องกลับมาใหม่ — ลด service time ที่เคาน์เตอร์
         </p>
       </div>
 
@@ -238,13 +255,13 @@ function Identify({ service, profile, phone, setPhone, identified, onIdentify, o
         <div className="anim-fadeUp rounded-2xl border border-line bg-white p-4 shadow-card">
           <SectionLabel>เบอร์ True ของคุณ</SectionLabel>
           <div className="flex items-center gap-2 rounded-xl border border-line bg-cloud px-3 py-2.5">
-            <span className="text-ink-soft">📱</span>
+            <Phone className="h-4 w-4 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               inputMode="tel"
               placeholder="08x-xxx-xxxx"
-              className="w-full bg-transparent text-[15px] font-medium text-ink outline-none"
+              className="w-full bg-transparent text-base font-medium text-ink outline-none"
             />
           </div>
           <button
@@ -253,7 +270,7 @@ function Identify({ service, profile, phone, setPhone, identified, onIdentify, o
           >
             ผูกข้อมูล
           </button>
-          <p className="mt-2 text-center text-[11px] text-ink-soft/60">
+          <p className="mt-2 text-center text-[11px] text-ink-soft/70">
             ระบบจะดึงแพ็กเกจ/ประวัติจากบัญชี True ของคุณ
           </p>
         </div>
@@ -274,7 +291,7 @@ function Identify({ service, profile, phone, setPhone, identified, onIdentify, o
             </div>
             <div className="mt-2 rounded-xl bg-violet-50 p-3">
               <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-violet-700">
-                🧠 ระบบวิเคราะห์ล่วงหน้า
+                <Brain className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" /> ระบบวิเคราะห์ล่วงหน้า
               </div>
               <p className="text-[13px] leading-snug text-violet-900">{profile.insight}</p>
             </div>
@@ -300,10 +317,10 @@ function Book({ service, profile, identified, onConfirm }) {
     <div className="flex flex-1 flex-col gap-4 px-4 py-5">
       <div className="anim-fadeUp rounded-2xl border border-line bg-white p-4 shadow-card">
         <SectionLabel>สรุปการจองคิว</SectionLabel>
-        <Row k="บริการ" v={`${service.emoji} ${service.title}`} />
+        <Row k="บริการ" v={service.title} />
         <Row k="ไปที่" v={service.counter} />
         <Row k="สาขา" v="True Shop · เซ็นทรัลเวิลด์ ชั้น 3" />
-        <Row k="เวลาบริการโดยประมาณ" v={`~${service.estMin} นาที`} />
+        <Row k="เวลาบริการโดยประมาณ" v={`~${service.estMin} นาที`} vClass="tnum" />
         <Row k="ข้อมูลลูกค้า" v={identified && profile ? `แนบแล้ว (${profile.name})` : 'ลูกค้าใหม่ — กรอกที่ร้าน'} />
       </div>
 
@@ -313,42 +330,43 @@ function Book({ service, profile, identified, onConfirm }) {
           <span className="text-[11px] text-ink-soft">เปิด 10:00–22:00</span>
         </div>
         <div className="mt-2 flex items-center gap-2 rounded-xl border border-true/30 bg-true-soft px-3 py-2.5">
-          <span className="text-lg">📍</span>
+          <MapPin className="h-5 w-5 shrink-0 text-true" strokeWidth={1.75} aria-hidden="true" />
           <div className="min-w-0 flex-1">
             <div className="text-[14px] font-bold text-ink">เซ็นทรัลเวิลด์ (ชั้น 3)</div>
             <div className="text-[11px] text-ink-soft">คิวรอตอนนี้ปานกลาง · แนะนำช่วงบ่าย</div>
           </div>
-          <span className="text-true">✓</span>
+          <Check className="h-4 w-4 shrink-0 text-true" strokeWidth={2.5} aria-hidden="true" />
         </div>
       </div>
 
       <div className="anim-fadeUp sticky bottom-0 -mx-4 mt-auto border-t border-line bg-white/95 px-4 pb-4 pt-3 backdrop-blur">
         <button
           onClick={onConfirm}
-          className="w-full rounded-xl bg-true py-3.5 text-[16px] font-bold text-white shadow-pop transition active:scale-[0.98]"
+          className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-true py-3.5 text-[16px] font-bold text-white shadow-pop transition active:scale-[0.98]"
         >
-          จองคิว 🎟️
+          <TicketIcon className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> จองคิว
         </button>
       </div>
     </div>
   )
 }
 
-function Row({ k, v }) {
+function Row({ k, v, vClass = '' }) {
   return (
     <div className="flex items-start justify-between gap-3 border-b border-line py-2 last:border-0">
       <span className="text-[12px] text-ink-soft">{k}</span>
-      <span className="text-right text-[13px] font-semibold text-ink">{v}</span>
+      <span className={`text-right text-[13px] font-semibold text-ink ${vClass}`}>{v}</span>
     </div>
   )
 }
 
 // ── Step 5: digital queue ticket ──────────────────────────────────────────
 function Ticket({ service, profile, identified, booking, onWelcomer, onAgain, onHub }) {
+  const ServiceIcon = getIcon(service.icon)
   return (
     <div className="flex flex-1 flex-col items-center px-5 py-7">
-      <div className="anim-fadeIn mb-3 text-center text-[13px] font-semibold text-emerald-600">
-        ✓ จองคิวสำเร็จ
+      <div className="anim-fadeIn mb-3 flex items-center justify-center gap-1.5 text-center text-[13px] font-semibold text-emerald-600">
+        <Check className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" /> จองคิวสำเร็จ
       </div>
 
       <div className="anim-ticket w-full max-w-[320px] origin-top rounded-3xl bg-white p-5 shadow-2xl">
@@ -366,11 +384,11 @@ function Ticket({ service, profile, identified, booking, onWelcomer, onAgain, on
           <div className="text-[11px] font-medium uppercase tracking-wider text-ink-soft/70">
             หมายเลขคิวของคุณ
           </div>
-          <div className="mt-1 text-[52px] font-extrabold leading-none tracking-tight text-true">
+          <div className="tnum mt-1 text-[52px] font-extrabold leading-none tracking-tight text-true">
             {booking.number}
           </div>
-          <div className="mt-2 inline-block rounded-full bg-cloud px-3 py-1 text-[12px] font-semibold text-ink-soft">
-            {service.emoji} {service.title}
+          <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-cloud px-3 py-1 text-[12px] font-semibold text-ink-soft">
+            <ServiceIcon className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" /> {service.title}
           </div>
         </div>
 
@@ -378,27 +396,27 @@ function Ticket({ service, profile, identified, booking, onWelcomer, onAgain, on
         <div className="grid grid-cols-2 gap-2">
           <div className="rounded-xl bg-true-soft p-3 text-center">
             <div className="text-[10px] font-medium text-true">อีกประมาณ</div>
-            <div className="text-[22px] font-extrabold leading-tight text-true">{booking.waitMin} นาที</div>
+            <div className="tnum text-[22px] font-extrabold leading-tight text-true">{booking.waitMin} นาที</div>
           </div>
           <div className="rounded-xl bg-cloud p-3 text-center">
             <div className="text-[10px] font-medium text-ink-soft">คิวก่อนหน้า</div>
-            <div className="text-[22px] font-extrabold leading-tight text-ink">{booking.position} คิว</div>
+            <div className="tnum text-[22px] font-extrabold leading-tight text-ink">{booking.position} คิว</div>
           </div>
         </div>
         <div className="mt-2 flex items-center justify-center gap-1.5 text-[11px] text-ink-soft">
-          <span className="pulse-dot text-true">●</span> อัปเดตสด — เดินเล่นรอได้ ไม่ต้องยืนรอที่ร้าน
+          <span className="pulse-dot h-1.5 w-1.5 shrink-0 rounded-full bg-true" aria-hidden="true" /> อัปเดตสด — เดินเล่นรอได้ ไม่ต้องยืนรอที่ร้าน
         </div>
 
         {/* attached data */}
         <div className="mt-3 rounded-xl bg-emerald-50 p-3">
           {identified && profile ? (
             <>
-              <div className="mb-1.5 text-center text-[12px] font-bold text-emerald-800">
-                ✓ ข้อมูลของคุณถูกส่งให้พนักงานแล้ว
+              <div className="mb-1.5 flex items-center justify-center gap-1.5 text-center text-[12px] font-bold text-emerald-800">
+                <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden="true" /> ข้อมูลของคุณถูกส่งให้พนักงานแล้ว
               </div>
               <div className="space-y-1 text-[12px] text-emerald-900">
-                <div className="flex items-center gap-2">👤 {profile.name} · {profile.plan}</div>
-                <div className="flex items-start gap-2">🧠 {profile.insight}</div>
+                <div className="flex items-center gap-2"><User className="h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden="true" /> {profile.name} · {profile.plan}</div>
+                <div className="flex items-start gap-2"><Brain className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden="true" /> {profile.insight}</div>
               </div>
             </>
           ) : (
@@ -408,7 +426,7 @@ function Ticket({ service, profile, identified, booking, onWelcomer, onAgain, on
           )}
         </div>
 
-        <div className="mt-3 border-t border-dashed border-line pt-3 text-center text-[10px] leading-relaxed text-ink-soft/60">
+        <div className="mt-3 border-t border-dashed border-line pt-3 text-center text-[10px] leading-relaxed text-ink-soft/70">
           เมื่อถึงคิว พนักงานจะเห็นข้อมูล + บริการที่คุณต้องการทันที
           <br />
           ลดเวลาบริการ ไม่ต้องเริ่มจากศูนย์
