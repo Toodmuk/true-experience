@@ -155,7 +155,7 @@ function ServiceSelect({ onPick }) {
             <span className="text-[14px] font-bold leading-tight text-ink">{s.title}</span>
             <span className="text-[11px] leading-snug text-ink-soft">{s.sub}</span>
             {s.fastLane && (
-              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
+              <span className="mt-auto rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
                 ช่องด่วน
               </span>
             )}
@@ -234,7 +234,7 @@ function Docs({ service, ticked, setTicked, allRequiredTicked, onConfirm }) {
         <button
           onClick={onConfirm}
           disabled={!allRequiredTicked}
-          className="w-full rounded-xl bg-true py-3.5 text-[15px] font-bold text-white shadow-pop transition active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-ink-soft/25 disabled:shadow-none"
+          className="w-full rounded-xl bg-true py-3.5 text-[15px] font-bold text-white shadow-pop transition active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-true/15 disabled:text-true/50 disabled:shadow-none"
         >
           {allRequiredTicked ? 'เตรียมครบแล้ว → ต่อไป' : 'ติ๊กเอกสารที่จำเป็นก่อน'}
         </button>
