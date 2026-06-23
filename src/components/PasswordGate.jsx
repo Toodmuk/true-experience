@@ -45,15 +45,20 @@ export default function PasswordGate({ children }) {
           กรอกรหัสผ่านเพื่อเข้าชม
         </p>
 
+        <label htmlFor="tsf-pw" className="sr-only">รหัสผ่าน</label>
         <div
-          className={`mt-5 flex items-center gap-2 rounded-xl border bg-cloud px-3 py-2.5 transition ${
+          className={`mt-5 flex items-center gap-2 rounded-xl border bg-cloud px-3 py-2.5 transition focus-within:ring-2 focus-within:ring-true ${
             err ? 'border-true' : 'border-line'
           }`}
         >
           <Lock className="h-4 w-4 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
           <input
+            id="tsf-pw"
             type="password"
             autoFocus
+            autoComplete="current-password"
+            aria-invalid={err}
+            aria-describedby={err ? 'tsf-pw-err' : undefined}
             value={val}
             onChange={(e) => {
               setVal(e.target.value)
@@ -63,7 +68,7 @@ export default function PasswordGate({ children }) {
             className="w-full bg-transparent text-base text-ink outline-none"
           />
         </div>
-        {err && <p className="mt-2 text-[12px] font-medium text-true">รหัสผ่านไม่ถูกต้อง ลองอีกครั้ง</p>}
+        {err && <p id="tsf-pw-err" role="alert" className="mt-2 text-[12px] font-medium text-true">รหัสผ่านไม่ถูกต้อง ลองอีกครั้ง</p>}
 
         <button
           type="submit"
@@ -72,7 +77,7 @@ export default function PasswordGate({ children }) {
           เข้าชม
         </button>
 
-        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-soft/70">
+        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-mute">
           ต้นแบบแนวคิด · True Next Gen
         </p>
       </form>

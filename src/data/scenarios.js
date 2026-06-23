@@ -203,10 +203,10 @@ export const WELCOMER_SCENARIOS = [
       plan: 'True 5G Together 599',
       tenure: '4 ปี 3 เดือน',
       arpu: '฿599 → ฿899 (เดือนนี้)',
-      segment: 'ลูกค้าภักดี (Loyal) · สูงวัย',
+      segment: 'ลูกค้าภักดี · ใช้ทีวี + เน็ตบ้าน',
       autopay: 'หักบัตรอัตโนมัติ • ไม่เคยค้างชำระ',
       insights: [
-        'ลูกค้าภักดี 4 ปี — ประวัติชำระตรงเวลา 100%',
+        'ลูกค้าภักดี 4 ปี — ไม่เคยค้างชำระ',
         'บิลเดือนนี้สูงผิดปกติ +฿300',
         'ส่วนลดโปรโมชัน 12 เดือนเพิ่งหมดอายุรอบบิลนี้',
       ],
@@ -316,8 +316,8 @@ export const WELCOMER_SCENARIOS = [
     impact: {
       metrics: [
         { value: '−67%', label: 'เวลาบริการต่อเคส (12→4 นาที)' },
-        { value: '↑ CSAT', label: 'ลดลูกค้าหัวร้อน ดันคะแนนความพอใจ' },
-        { value: '฿599', label: 'รักษา ARPU ลูกค้าภักดี (กัน churn)' },
+        { value: '+18 จุด', label: 'คะแนนความพอใจ (CSAT) คาดว่าเพิ่ม' },
+        { value: '฿7,188/ปี', label: 'ARPU ที่รักษาไว้ (กันลูกค้าหลุด)' },
       ],
       before: {
         time: '~12 นาที',
@@ -466,8 +466,8 @@ export const WELCOMER_SCENARIOS = [
     impact: {
       metrics: [
         { value: '−50%', label: 'เวลาบริการ (10→5 นาที)' },
-        { value: '+฿300', label: 'ARPU/เดือน จาก upsell ตรงจุด' },
-        { value: '↑ Conv.', label: 'ปิดการขายง่ายขึ้น ไม่ขายเดา' },
+        { value: '+฿3,600/ปี', label: 'ARPU เพิ่มจาก upsell (+฿300/ด.)' },
+        { value: '×2', label: 'โอกาสปิดการขาย (เสนอตรงจุด)' },
       ],
       before: {
         time: '~10 นาที',
@@ -617,7 +617,7 @@ export const WELCOMER_SCENARIOS = [
     impact: {
       metrics: [
         { value: '−60%', label: 'เวลาบริการ (20→8 นาที)' },
-        { value: '฿13,000', label: 'มูลค่า/ปี ที่กันไม่ให้หลุดไปคู่แข่ง' },
+        { value: '฿13,000/ปี', label: 'มูลค่าลูกค้าที่กันไม่ให้หลุด' },
         { value: '1→0', label: 'เปลี่ยน “ยกเลิก” เป็น “ย้ายบริการ”' },
       ],
       before: {

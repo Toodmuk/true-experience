@@ -18,7 +18,7 @@ export default function Intro() {
       <div className="anim-fadeUp flex items-center justify-between">
         <button
           onClick={() => dispatch({ type: 'GO_HUB' })}
-          className="-ml-1 inline-flex min-h-[44px] items-center gap-1 px-1 text-[13px] font-semibold text-ink-soft/70 active:scale-95"
+          className="-ml-1 inline-flex min-h-[44px] items-center gap-1 px-1 text-[13px] font-semibold text-ink-mute active:scale-95"
         >
           <ChevronLeft className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> หน้าแรก
         </button>
@@ -55,7 +55,7 @@ export default function Intro() {
       </div>
 
       <div className="anim-fadeUp mt-8" style={{ animationDelay: '0.16s' }}>
-        <div className="mb-3 text-[13px] font-bold uppercase tracking-wide text-ink-soft/70">
+        <div className="mb-3 text-[13px] font-bold uppercase tracking-wide text-ink-mute">
           เลือกสถานการณ์เพื่อทดลองเล่น
         </div>
         <div className="flex flex-col gap-3.5">
@@ -94,7 +94,7 @@ export default function Intro() {
         </div>
       </div>
 
-      <p className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-soft/70" style={{ animationDelay: '0.2s' }}>
+      <p className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-mute" style={{ animationDelay: '0.2s' }}>
         ต้นแบบแนวคิด · True Next Gen · ข้อมูลลูกค้าเป็นตัวอย่างจำลอง
       </p>
     </div>

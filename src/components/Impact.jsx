@@ -28,15 +28,25 @@ export default function Impact() {
         <b>{sc.service.resolution.title}:</b> {sc.service.resolution.text}
       </div>
 
-      {/* business-impact metric band (what a C-level cares about) */}
+      {/* business-impact metric band (what a C-level cares about) — illustrative */}
       {sc.impact.metrics && (
-        <div className="anim-fadeUp mt-4 grid grid-cols-3 gap-2" style={{ animationDelay: '0.1s' }}>
-          {sc.impact.metrics.map((m, i) => (
-            <div key={i} className="rounded-2xl border border-line bg-white p-3 text-center shadow-card">
-              <div className="tnum text-[19px] font-extrabold leading-tight text-true">{m.value}</div>
-              <div className="mt-1 text-[10.5px] leading-snug text-ink-soft">{m.label}</div>
-            </div>
-          ))}
+        <div className="anim-fadeUp mt-4" style={{ animationDelay: '0.1s' }}>
+          <div className="mb-1.5 flex items-center gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wide text-ink-mute">
+              ผลลัพธ์ที่คาดหวัง
+            </span>
+            <span className="rounded-full bg-cloud px-2 py-0.5 text-[10px] font-semibold text-ink-mute">
+              ประมาณการ
+            </span>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {sc.impact.metrics.map((m, i) => (
+              <div key={i} className="rounded-2xl border border-line bg-white p-3 text-center shadow-card">
+                <div className="tnum text-[20px] font-extrabold leading-tight text-true">{m.value}</div>
+                <div className="mt-1 text-[11px] leading-snug text-ink-soft">{m.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -63,7 +73,7 @@ export default function Impact() {
 
       {/* wins */}
       <div className="mt-6">
-        <div className="anim-fadeUp mb-2.5 text-[13px] font-bold uppercase tracking-wide text-ink-soft/70" style={{ animationDelay: '0.2s' }}>
+        <div className="anim-fadeUp mb-2.5 text-[13px] font-bold uppercase tracking-wide text-ink-mute" style={{ animationDelay: '0.2s' }}>
           คุณค่าที่ได้
         </div>
         <div className="stagger flex flex-col gap-2.5">

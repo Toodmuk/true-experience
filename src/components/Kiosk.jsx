@@ -38,7 +38,7 @@ export default function Kiosk() {
         </div>
 
         <div className="py-5 text-center">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-ink-soft/70">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-ink-mute">
             หมายเลขคิวของคุณ
           </div>
           <div className="tnum mt-1 text-[56px] font-extrabold leading-none tracking-tight text-true">
@@ -66,7 +66,7 @@ export default function Kiosk() {
           </div>
         </div>
 
-        <div className="mt-3 border-t border-dashed border-line pt-3 text-center text-[10px] leading-relaxed text-ink-soft/70">
+        <div className="mt-3 border-t border-dashed border-line pt-3 text-center text-[10px] leading-relaxed text-ink-mute">
           เมื่อถึงคิว Service Staff จะเห็นข้อมูลทั้งหมดทันที
           <br />
           ไม่ต้องเล่าเรื่องใหม่

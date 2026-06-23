@@ -101,7 +101,7 @@ export default function Hub() {
 
       {/* concept cards */}
       <div className="anim-fadeUp mt-7" style={{ animationDelay: '0.16s' }}>
-        <div className="mb-3 text-[13px] font-bold uppercase tracking-wide text-ink-soft/70">
+        <div className="mb-3 text-[13px] font-bold uppercase tracking-wide text-ink-mute">
           เลือกมุมที่อยากลองเล่น
         </div>
         <div className="flex flex-col gap-3.5">
@@ -121,7 +121,7 @@ export default function Hub() {
                   <Icon className="h-6 w-6" strokeWidth={1.75} style={{ color: c.accent }} aria-hidden="true" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="text-[11px] font-semibold uppercase tracking-wide text-ink-soft/70">
+                  <div className="text-[11px] font-semibold uppercase tracking-wide text-ink-mute">
                     {c.kicker}
                   </div>
                   <div className="text-[17px] font-bold text-ink">{c.title}</div>
@@ -143,7 +143,7 @@ export default function Hub() {
       </div>
 
       <p
-        className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-soft/70"
+        className="anim-fadeUp mt-auto pt-8 text-center text-[11px] leading-relaxed text-ink-mute"
         style={{ animationDelay: '0.28s' }}
       >
         ต้นแบบแนวคิด · True Next Gen · ข้อมูลลูกค้าเป็นตัวอย่างจำลอง

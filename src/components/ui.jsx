@@ -56,7 +56,7 @@ export function Tag({ children, color }) {
 
 export function SectionLabel({ children }) {
   return (
-    <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-ink-soft/70">
+    <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-ink-mute">
       {children}
     </div>
   )

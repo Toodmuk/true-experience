@@ -55,7 +55,7 @@ export default function ServiceStaff() {
                   key={i}
                   className="inline-flex items-center gap-1 rounded-lg bg-cloud px-2.5 py-1 text-[12px]"
                 >
-                  <span className="text-ink-soft/70">{a.captureLabel}:</span>
+                  <span className="text-ink-mute">{a.captureLabel}:</span>
                   <span className="font-semibold text-ink">{a.label}</span>
                 </span>
               ))}
@@ -133,7 +133,7 @@ export default function ServiceStaff() {
         {/* close */}
         <div className="anim-fadeUp sticky bottom-0 -mx-4 mt-1 border-t border-line bg-white/95 px-4 pb-4 pt-3 backdrop-blur">
           {!allDone && (
-            <p className="mb-2 text-center text-[11px] text-ink-soft/70">
+            <p className="mb-2 text-center text-[11px] text-ink-mute">
               ทำเครื่องหมายขั้นตอนให้ครบ หรือกดปิดเคสเพื่อดูผลลัพธ์
             </p>
           )}

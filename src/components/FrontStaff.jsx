@@ -40,7 +40,7 @@ export default function FrontStaff() {
         right={
           <button
             onClick={() => dispatch({ type: 'RESTART_WELCOMER' })}
-            className="inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-[12px] font-medium text-ink-soft/70 active:scale-95"
+            className="inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-[12px] font-medium text-ink-mute active:scale-95"
           >
             <RotateCcw className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> เริ่มใหม่
           </button>
@@ -83,7 +83,7 @@ export default function FrontStaff() {
               <span className="h-px flex-1 bg-line" /> หรือ <span className="h-px flex-1 bg-line" />
             </div>
 
-            <div className="flex items-center gap-2 rounded-xl border border-line bg-cloud px-3 py-2.5">
+            <div className="flex items-center gap-2 rounded-xl border border-line bg-cloud px-3 py-2.5 transition focus-within:ring-2 focus-within:ring-true">
               <Phone className="h-4 w-4 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
               <input
                 defaultValue={sc.customer.phone}
@@ -98,7 +98,7 @@ export default function FrontStaff() {
             >
               ค้นหาด้วยเบอร์
             </button>
-            <p className="mt-2 text-center text-[11px] text-ink-soft/70">
+            <p className="mt-2 text-center text-[11px] text-ink-mute">
               ถ้าลูกค้าจองผ่าน <b>True Queue</b> ข้อมูลจะมาพร้อมคิวอัตโนมัติ
             </p>
           </div>
@@ -239,7 +239,7 @@ export default function FrontStaff() {
                 >
                   <TicketIcon className="h-4 w-4" strokeWidth={2} aria-hidden="true" /> ส่งต่อ Service + พิมพ์บัตรคิว
                 </button>
-                <p className="mt-2 text-center text-[11px] text-ink-soft/70">
+                <p className="mt-2 text-center text-[11px] text-ink-mute">
                   กดคิวเฉพาะตอนต้องส่งต่อ — ถ้าจบที่หน้าร้านได้ ไม่ต้องกดคิวเลย
                 </p>
               </div>
@@ -301,7 +301,7 @@ function PromoSolver({ sc, revealed, onReveal }) {
 function Field({ k, v }) {
   return (
     <div className="rounded-lg bg-cloud px-3 py-2">
-      <div className="text-[10px] text-ink-soft/70">{k}</div>
+      <div className="text-[10px] text-ink-mute">{k}</div>
       <div className="tnum text-[13px] font-semibold leading-snug text-ink">{v}</div>
     </div>
   )

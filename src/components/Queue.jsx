@@ -164,7 +164,7 @@ function ServiceSelect({ onPick }) {
         })}
       </div>
 
-      <p className="mt-auto pt-4 text-center text-[11px] leading-relaxed text-ink-soft/70">
+      <p className="mt-auto pt-4 text-center text-[11px] leading-relaxed text-ink-mute">
         เหมือน QueQ — แต่ผูกกับข้อมูล True เพื่อให้พนักงานพร้อมก่อนคุณถึง
       </p>
     </div>
@@ -216,7 +216,9 @@ function Docs({ service, ticked, setTicked, allRequiredTicked, onConfirm }) {
                     จำเป็น
                   </span>
                 ) : (
-                  <span className="shrink-0 text-[10px] text-ink-soft/70">ถ้ามี</span>
+                  <span className="shrink-0 rounded-full bg-cloud px-2 py-0.5 text-[10px] font-bold text-ink-mute">
+                    ถ้ามี
+                  </span>
                 )}
               </button>
             )
@@ -255,7 +257,7 @@ function Identify({ service, profile, phone, setPhone, identified, onIdentify, o
       {!identified ? (
         <div className="anim-fadeUp rounded-2xl border border-line bg-white p-4 shadow-card">
           <SectionLabel>เบอร์ True ของคุณ</SectionLabel>
-          <div className="flex items-center gap-2 rounded-xl border border-line bg-cloud px-3 py-2.5">
+          <div className="flex items-center gap-2 rounded-xl border border-line bg-cloud px-3 py-2.5 transition focus-within:ring-2 focus-within:ring-true">
             <Phone className="h-4 w-4 text-ink-soft" strokeWidth={1.75} aria-hidden="true" />
             <input
               value={phone}
@@ -271,7 +273,7 @@ function Identify({ service, profile, phone, setPhone, identified, onIdentify, o
           >
             ผูกข้อมูล
           </button>
-          <p className="mt-2 text-center text-[11px] text-ink-soft/70">
+          <p className="mt-2 text-center text-[11px] text-ink-mute">
             ระบบจะดึงแพ็กเกจ/ประวัติจากบัญชี True ของคุณ
           </p>
         </div>
@@ -287,7 +289,7 @@ function Identify({ service, profile, phone, setPhone, identified, onIdentify, o
             <div className="text-[16px] font-bold text-ink">{profile.name}</div>
             <div className="text-[12px] text-ink-soft">{profile.phone}</div>
             <div className="mt-3 rounded-xl bg-cloud px-3 py-2">
-              <div className="text-[10px] text-ink-soft/70">แพ็กเกจ</div>
+              <div className="text-[10px] text-ink-mute">แพ็กเกจ</div>
               <div className="text-[13px] font-semibold text-ink">{profile.plan}</div>
             </div>
             <div className="mt-2 rounded-xl bg-violet-50 p-3">
@@ -382,7 +384,7 @@ function Ticket({ service, profile, identified, booking, onWelcomer, onAgain, on
         </div>
 
         <div className="py-4 text-center">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-ink-soft/70">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-ink-mute">
             หมายเลขคิวของคุณ
           </div>
           <div className="tnum mt-1 text-[52px] font-extrabold leading-none tracking-tight text-true">
@@ -432,7 +434,7 @@ function Ticket({ service, profile, identified, booking, onWelcomer, onAgain, on
           แจ้งเตือนผ่านแอป/LINE เมื่อใกล้ถึงคิว — ออกไปเดินเล่นได้
         </div>
 
-        <div className="mt-3 border-t border-dashed border-line pt-3 text-center text-[10px] leading-relaxed text-ink-soft/70">
+        <div className="mt-3 border-t border-dashed border-line pt-3 text-center text-[10px] leading-relaxed text-ink-mute">
           เมื่อถึงคิว พนักงานจะเห็นข้อมูล + บริการที่คุณต้องการทันที
           <br />
           ลดเวลาบริการ ไม่ต้องเริ่มจากศูนย์

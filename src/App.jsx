@@ -51,7 +51,10 @@ export default function App() {
       </div>
       <PasswordGate>
         <SessionProvider>
-          <div className="relative z-10 mx-auto flex min-h-full w-full max-w-md flex-col bg-cloud no-scrollbar md:h-[860px] md:max-h-[calc(100vh-3rem)] md:min-h-0 md:w-[414px] md:overflow-y-auto md:rounded-[2.4rem] md:shadow-pop md:ring-1 md:ring-black/10">
+          {/* fluid height on large screens: the framed device hugs its content
+             (capped at the viewport, scrolls if taller) so no screen is clipped
+             or left with dead space. Phones stay full-bleed. */}
+          <div className="relative z-10 mx-auto flex min-h-full w-full max-w-md flex-col bg-cloud no-scrollbar md:h-auto md:max-h-[calc(100vh-3rem)] md:min-h-0 md:w-[414px] md:overflow-y-auto md:rounded-[2.4rem] md:shadow-pop md:ring-1 md:ring-black/10">
             <Router />
           </div>
         </SessionProvider>
