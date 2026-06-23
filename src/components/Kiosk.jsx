@@ -18,12 +18,15 @@ export default function Kiosk() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-b from-slate-900 to-slate-800 px-6 py-10">
-      <div className="anim-fadeIn mb-5 flex items-center gap-2 text-[13px] font-medium text-white/70">
+      <div className="anim-fadeIn mb-4 flex items-center gap-2 text-[13px] font-medium text-white/70">
         <Printer className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" /> ตู้คิวกำลังพิมพ์บัตร...
       </div>
 
+      {/* printer slot — the ticket below appears to feed out of it */}
+      <div className="printer-slot z-10 w-full max-w-[300px] shadow-lg" aria-hidden="true" />
+
       {/* printed ticket */}
-      <div className="anim-ticket w-full max-w-[300px] origin-top rounded-2xl bg-white p-5 shadow-2xl">
+      <div className="anim-ticket -mt-1 w-full max-w-[300px] origin-top rounded-2xl bg-white p-5 shadow-2xl">
         <div className="flex items-center justify-between border-b border-dashed border-line pb-3">
           <div className="flex items-center gap-1.5">
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-true text-xs font-bold text-white">

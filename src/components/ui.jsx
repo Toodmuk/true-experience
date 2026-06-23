@@ -22,7 +22,7 @@ export function Suggestion({ s }) {
   )
 }
 
-export function RoleBar({ device, role, sub, accent = '#e2231a', right }) {
+export function RoleBar({ device, role, sub, accent = '#ec2127', right }) {
   return (
     <div
       className="sticky top-0 z-20 flex items-center gap-3 border-b border-line bg-white/90 px-4 py-3 backdrop-blur"

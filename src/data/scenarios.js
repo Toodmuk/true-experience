@@ -190,7 +190,7 @@ export const WELCOMER_SCENARIOS = [
     personaId: 'somchai',
     title: 'ลุงสมชาย — บิลแพงขึ้น (โปรฯ หมด)',
     tag: 'เคสอารมณ์ร้อน · กลุ่มเปราะบาง',
-    accent: '#e2231a',
+    accent: '#ec2127',
     walkIn: {
       emoji: '😟',
       mood: 'งุนงง + หงุดหงิด',
@@ -314,6 +314,11 @@ export const WELCOMER_SCENARIOS = [
       },
     },
     impact: {
+      metrics: [
+        { value: '−67%', label: 'เวลาบริการต่อเคส (12→4 นาที)' },
+        { value: '↑ CSAT', label: 'ลดลูกค้าหัวร้อน ดันคะแนนความพอใจ' },
+        { value: '฿599', label: 'รักษา ARPU ลูกค้าภักดี (กัน churn)' },
+      ],
       before: {
         time: '~12 นาที',
         mood: 'หัวร้อนขึ้นเรื่อยๆ',
@@ -459,6 +464,11 @@ export const WELCOMER_SCENARIOS = [
       },
     },
     impact: {
+      metrics: [
+        { value: '−50%', label: 'เวลาบริการ (10→5 นาที)' },
+        { value: '+฿300', label: 'ARPU/เดือน จาก upsell ตรงจุด' },
+        { value: '↑ Conv.', label: 'ปิดการขายง่ายขึ้น ไม่ขายเดา' },
+      ],
       before: {
         time: '~10 นาที',
         mood: 'ลังเล อาจเดินจากไปเทียบค่ายอื่น',
@@ -605,6 +615,11 @@ export const WELCOMER_SCENARIOS = [
       },
     },
     impact: {
+      metrics: [
+        { value: '−60%', label: 'เวลาบริการ (20→8 นาที)' },
+        { value: '฿13,000', label: 'มูลค่า/ปี ที่กันไม่ให้หลุดไปคู่แข่ง' },
+        { value: '1→0', label: 'เปลี่ยน “ยกเลิก” เป็น “ย้ายบริการ”' },
+      ],
       before: {
         time: '~20 นาที',
         mood: 'ยกเลิกสำเร็จ เสียลูกค้า',
@@ -628,10 +643,29 @@ export function getScenario(id) {
   return WELCOMER_SCENARIOS.find((s) => s.id === id) || null
 }
 
-// queue numbers — a fresh "new-format" code (e.g. A8823) per the field note that
+// Deterministic so a live pitch shows the same plausible numbers every run
+// (no Math.random surprises mid-demo). Stable hash from the seed id.
+function hashSeed(s) {
+  let h = 2166136261
+  for (let i = 0; i < String(s).length; i++) {
+    h ^= String(s).charCodeAt(i)
+    h = Math.imul(h, 16777619)
+  }
+  return h >>> 0
+}
+
+// queue numbers — a fresh "new-format" code (e.g. B8823) per the field note that
 // True is moving to a new queue-number scheme.
 export function makeQueueNumber(seedId) {
   const letter = { 'package': 'B', 'device': 'C', 'new-sim': 'S', 'bill': 'P', 'retention': 'R', 'signal': 'T' }[seedId] || 'A'
-  const n = Math.floor(1000 + Math.random() * 8999)
+  const n = 1000 + (hashSeed(seedId) % 9000)
   return `${letter}${n}`
+}
+
+// Stable, plausible wait estimate for the True Queue ticket (no randomness).
+export function queueEstimate(seedId) {
+  const h = hashSeed(seedId)
+  const position = 1 + (h % 3) // 1–3 คิวก่อนหน้า
+  const waitMin = position * 4 + (h % 4) + 2 // ~6–18 นาที, สมเหตุสมผล
+  return { waitMin, position }
 }

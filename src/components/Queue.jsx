@@ -8,9 +8,10 @@ import {
   MapPin,
   Ticket as TicketIcon,
   User,
+  Bell,
 } from 'lucide-react'
 import { useSession } from '../store.jsx'
-import { QUEUE_SERVICES, QUEUE_PROFILE, getQueueService, makeQueueNumber } from '../data/scenarios.js'
+import { QUEUE_SERVICES, QUEUE_PROFILE, getQueueService, makeQueueNumber, queueEstimate } from '../data/scenarios.js'
 import { SectionLabel } from './ui.jsx'
 import { getIcon } from './icons.jsx'
 
@@ -74,8 +75,8 @@ export default function Queue() {
   const confirmDocs = () => setStep(profile ? 'identify' : 'book')
 
   const confirmBook = () => {
-    const waitMin = Math.max(3, Math.round(service.estMin * (0.5 + Math.random() * 0.7)))
-    const position = Math.max(1, Math.round(waitMin / 4))
+    // deterministic (stable across runs) so the live demo never shows a jarring number
+    const { waitMin, position } = queueEstimate(serviceId)
     setBooking({ number: makeQueueNumber(serviceId), waitMin, position })
     setStep('ticket')
   }
@@ -424,6 +425,11 @@ function Ticket({ service, profile, identified, booking, onWelcomer, onAgain, on
               ลูกค้าใหม่ — เตรียมเอกสารตามที่แจ้ง พนักงานจะช่วยเปิดข้อมูลที่ร้าน
             </div>
           )}
+        </div>
+
+        <div className="mt-2.5 flex items-center justify-center gap-1.5 rounded-xl bg-blue-50 px-3 py-2 text-center text-[11px] font-medium text-blue-900">
+          <Bell className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden="true" />
+          แจ้งเตือนผ่านแอป/LINE เมื่อใกล้ถึงคิว — ออกไปเดินเล่นได้
         </div>
 
         <div className="mt-3 border-t border-dashed border-line pt-3 text-center text-[10px] leading-relaxed text-ink-soft/70">

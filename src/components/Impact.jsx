@@ -28,6 +28,18 @@ export default function Impact() {
         <b>{sc.service.resolution.title}:</b> {sc.service.resolution.text}
       </div>
 
+      {/* business-impact metric band (what a C-level cares about) */}
+      {sc.impact.metrics && (
+        <div className="anim-fadeUp mt-4 grid grid-cols-3 gap-2" style={{ animationDelay: '0.1s' }}>
+          {sc.impact.metrics.map((m, i) => (
+            <div key={i} className="rounded-2xl border border-line bg-white p-3 text-center shadow-card">
+              <div className="tnum text-[19px] font-extrabold leading-tight text-true">{m.value}</div>
+              <div className="mt-1 text-[10.5px] leading-snug text-ink-soft">{m.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* time contrast */}
       <div className="anim-fadeUp mt-5 flex items-stretch gap-2" style={{ animationDelay: '0.12s' }}>
         <div className="flex-1 rounded-2xl bg-slate-100 p-3.5 text-center">

@@ -1,4 +1,4 @@
-import { Home, Receipt, Building2, Smartphone, Ticket, Tablet } from 'lucide-react'
+import { Home, Receipt, Building2, Smartphone, Ticket, Tablet, MapPin } from 'lucide-react'
 import { useSession } from '../store.jsx'
 import { PERSONAS } from '../data/scenarios.js'
 import { Brand, Tag } from './ui.jsx'
@@ -18,7 +18,7 @@ const CONCEPTS = [
     title: 'True Queue',
     desc: 'จองคิวจากที่บ้านหรือที่ไหนก็ได้ — ระบบบอกว่าต้องเตรียมเอกสารอะไร แล้วส่งข้อมูลของคุณเข้าคิวล่วงหน้า',
     points: ['เลือกบริการที่จะมาทำ', 'รู้ล่วงหน้าว่าต้องเตรียมอะไร', 'ผูกเบอร์ → พนักงานพร้อมก่อนคุณถึง'],
-    accent: '#e2231a',
+    accent: '#ec2127',
   },
   {
     id: 'welcomer',
@@ -38,7 +38,7 @@ export default function Hub() {
     <div className="flex flex-1 flex-col px-5 pb-10 pt-7">
       <div className="anim-fadeUp flex items-center justify-between">
         <Brand />
-        <Tag color="#e2231a">ต้นแบบ</Tag>
+        <Tag color="#ec2127">ต้นแบบ</Tag>
       </div>
 
       <div className="anim-fadeUp mt-7" style={{ animationDelay: '0.05s' }}>
@@ -51,6 +51,33 @@ export default function Hub() {
           สองด้านของเรื่องเดียวกัน — ลูกค้า <b className="text-ink">จองคิวจากบ้าน</b> พร้อมเตรียมเอกสาร
           ข้อมูลถูกส่งเข้าคิว แล้วพนักงาน <b className="text-ink">ดูแลตั้งแต่ก้าวแรก</b> โดยไม่ต้องถามซ้ำ
         </p>
+      </div>
+
+      {/* field-research credibility — promoted near the top: the C-level trust signal */}
+      <div
+        className="anim-fadeUp mt-5 rounded-2xl border border-true/15 bg-true-soft p-4 shadow-card"
+        style={{ animationDelay: '0.08s' }}
+      >
+        <div className="flex items-center gap-1.5">
+          <MapPin className="h-4 w-4 shrink-0 text-true" strokeWidth={2} aria-hidden="true" />
+          <span className="text-[12px] font-bold uppercase tracking-wide text-ink">
+            ออกแบบจากการลงพื้นที่จริง · True Shop เซ็นทรัลเวิลด์
+          </span>
+        </div>
+        <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-soft">
+          ทุกหน้าจอกลั่นจาก pain point + 4 personas ที่เก็บจากการสังเกตหน้าร้านจริง — ไม่ใช่สมมุติ
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {PERSONAS.map((p) => (
+            <span
+              key={p.id}
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1 text-[12px] font-semibold text-ink shadow-sm"
+            >
+              <span className="text-[15px]" aria-hidden="true">{p.emoji}</span>
+              {p.name}
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* story strip */}
@@ -112,24 +139,6 @@ export default function Hub() {
             </button>
             )
           })}
-        </div>
-      </div>
-
-      {/* grounding: personas from the field research */}
-      <div className="anim-fadeUp mt-7" style={{ animationDelay: '0.22s' }}>
-        <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-ink-soft/70">
-          ออกแบบจากการลงพื้นที่จริง · True Shop เซ็นทรัลเวิลด์
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {PERSONAS.map((p) => (
-            <span
-              key={p.id}
-              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1 text-[12px] font-medium text-ink shadow-sm"
-            >
-              <span>{p.emoji}</span>
-              {p.name}
-            </span>
-          ))}
         </div>
       </div>
 
